@@ -8,7 +8,7 @@ class OptimalTransportBalancing():
         metric: function (x,y)
             Compute distance between two elements x and y, that are both assumed to be tensors.
         """
-        if metric:
+        if metric != None:
             self.metric = metric
         else:
             self.metric = lambda x,y : torch.linalg.norm(x-y)
@@ -21,12 +21,12 @@ class OptimalTransportBalancing():
     def get_weights(self, source, target, source_weights = None, target_weights = None):
         n = len(source)
         m = len(target)
-        if source_weights:
-            w = source_weights/n
+        if source_weights != None:
+            w = source_weights.reshape((n,))/n
         else:
             w = torch.ones(n)/n
-        if target_weights:
-            w_ring = target_weights/m
+        if target_weights != None:
+            w_ring = target_weights.reshape((m,))/m
         else:
             w_ring = torch.ones(m)/m
         sum_nn_w_ring = torch.zeros(n)
