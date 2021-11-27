@@ -1,6 +1,6 @@
 import torch
 
-class OT_Balancing():
+class OptimalTransportBalancing():
     def __init__(self, metric = None):
         """
         Attributes
